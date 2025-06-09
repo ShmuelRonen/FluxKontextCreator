@@ -1,0 +1,209 @@
+{
+  "id": "767bc4ab-79ed-4adc-840b-2b86568dacf7",
+  "revision": 0,
+  "last_node_id": 5,
+  "last_link_id": 3,
+  "nodes": [
+    {
+      "id": 5,
+      "type": "easy showAnything",
+      "pos": [
+        351.01995849609375,
+        2483.74267578125
+      ],
+      "size": [
+        335.3371276855469,
+        154.62928771972656
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "anything",
+          "shape": 7,
+          "type": "*",
+          "link": 3
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output",
+          "type": "*",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-easy-use",
+        "ver": "c7fbf05970c9f9277d74ea7065ac4c5bef381528",
+        "Node name for S&R": "easy showAnything"
+      },
+      "widgets_values": [
+        "✅ flux-kontext-pro edit complete: Change the scene to winter ..."
+      ]
+    },
+    {
+      "id": 3,
+      "type": "LoadImage",
+      "pos": [
+        -9.21936321258545,
+        2111.58447265625
+      ],
+      "size": [
+        274.080078125,
+        314
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            2
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.39",
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "art_00164_.png",
+        "image"
+      ]
+    },
+    {
+      "id": 2,
+      "type": "PreviewImage",
+      "pos": [
+        779.7938842773438,
+        2114.75146484375
+      ],
+      "size": [
+        424.40057373046875,
+        447.9636535644531
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 1
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.39",
+        "Node name for S&R": "PreviewImage"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 1,
+      "type": "FluxKontextCreator",
+      "pos": [
+        314.2575988769531,
+        2110.931396484375
+      ],
+      "size": [
+        400,
+        276
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "input_image",
+          "type": "IMAGE",
+          "link": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            1
+          ]
+        },
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            3
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "FluxKontextCreator"
+      },
+      "widgets_values": [
+        "Change the scene to winter ",
+        "flux-kontext-pro",
+        "1:1",
+        "png",
+        6,
+        1272068316,
+        "randomize",
+        true
+      ]
+    }
+  ],
+  "links": [
+    [
+      1,
+      1,
+      0,
+      2,
+      0,
+      "IMAGE"
+    ],
+    [
+      2,
+      3,
+      0,
+      1,
+      0,
+      "IMAGE"
+    ],
+    [
+      3,
+      1,
+      1,
+      5,
+      0,
+      "*"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 1.1671841070450013,
+      "offset": [
+        306.17204791587807,
+        -1885.703821649542
+      ]
+    },
+    "ue_links": [],
+    "frontendVersion": "1.21.7",
+    "VHS_latentpreview": true,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true
+  },
+  "version": 0.4
+}
