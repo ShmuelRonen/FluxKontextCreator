@@ -1,172 +1,252 @@
-# Flux Kontext Creator - ComfyUI Node
+# 🎨 Flux Kontext Creator for ComfyUI
 
-A powerful ComfyUI node for text-based image editing using Black Forest Labs' Flux Kontext API.
+A powerful ComfyUI custom node for text-based image editing using Black Forest Labs' Flux Kontext API. Transform your images with simple text instructions while maintaining character consistency and quality.
 
-## Features
+![Flux Kontext Creator](https://img.shields.io/badge/ComfyUI-Custom%20Node-brightgreen)
+![Python](https://img.shields.io/badge/Python-3.7%2B-blue)
+![License](https://img.shields.io/badge/License-MIT-yellow)
 
-🎨 **Text-Based Editing** - Edit images with simple text instructions  
-⚡ **Fast Processing** - 3-5 seconds generation time  
-🎯 **Local Edits** - Change specific parts without affecting the rest  
-🔄 **Character Consistency** - Maintain character identity across edits  
-🏆 **Premium Quality** - Pro and Max model options  
+## ✨ Features
 
-## Installation
+- **🖼️ Text-Based Image Editing**: Modify images using simple text instructions
+- **🎭 Character Consistency**: Maintain character identity across multiple edits
+- **⚡ Fast Processing**: 3-5 second generation times
+- **🎯 Local Editing**: Target specific parts without affecting the rest
+- **🎨 Style Transfer**: Apply different artistic styles while preserving elements
+- **📝 Text Editing**: Modify text within images directly
+- **🔄 Iterative Editing**: Build upon previous edits step-by-step
 
-### 1. Create Node Directory
+## 🚀 Supported Models
+
+- **FLUX.1 Kontext [pro]**: Fast, iterative editing for production workflows
+- **FLUX.1 Kontext [max]**: Maximum performance with enhanced typography and prompt precision
+
+## 📋 Requirements
+
+- ComfyUI (latest version recommended)
+- Python 3.7+
+- Black Forest Labs API key
+- Required Python packages:
+  - `requests`
+  - `Pillow (PIL)`
+  - `torch`
+  - `numpy`
+
+## 🛠️ Installation
+
+### Method 1: ComfyUI Manager (Recommended)
+
+1. Open ComfyUI Manager
+2. Search for "Flux Kontext Creator"
+3. Click Install
+4. Restart ComfyUI
+
+### Method 2: Git Clone
+
+1. Navigate to your ComfyUI custom nodes directory:
 ```bash
-# Navigate to your ComfyUI custom_nodes directory
 cd ComfyUI/custom_nodes/
-
-# Create new directory for the node
-mkdir flux-kontext-creator
-cd flux-kontext-creator
 ```
 
-### 2. Add Node Files
-Place these files in the `flux-kontext-creator` directory:
-- `__init__.py` (the init file)
-- `flux_kontext_creator.py` (the main node file)
-- `config.ini` (configuration file)
+2. Clone the repository:
+```bash
+git clone https://github.com/ShmuelRonen/FluxKontextCreator.git
+```
 
-### 3. Setup Configuration
-Edit `config.ini` and add your BFL API key:
+3. Install dependencies:
+```bash
+cd FluxKontextCreator
+pip install -r requirements.txt
+```
+
+4. Restart ComfyUI
+
+### Method 3: Manual Download
+
+1. Download the latest release from [GitHub](https://github.com/ShmuelRonen/FluxKontextCreator/releases)
+2. Extract to `ComfyUI/custom_nodes/FluxKontextCreator/`
+3. Restart ComfyUI
+
+## ⚙️ Configuration
+
+### 1. Get Your API Key
+
+1. Visit [Black Forest Labs API](https://api.bfl.ai)
+2. Sign up for an account
+3. Get your API key from the dashboard
+4. You'll receive 200 free credits to start
+
+### 2. Configure the Node
+
+Create or edit the `config.ini` file in the node directory:
+
 ```ini
 [API]
-X_KEY=your-bfl-api-key-here
+# Your Black Forest Labs API key
+X_KEY=your-api-key-here
+
+# API endpoint (use api.bfl.ai, not api.bfl.ml)
+BASE_URL=https://api.bfl.ai
+
+[SETTINGS]
+# Default timeout for API requests (seconds)
+TIMEOUT=60
+
+# Default safety tolerance (0-6)
+SAFETY_TOLERANCE=4
+
+# Default output format (png/jpeg)
+OUTPUT_FORMAT=png
 ```
 
-**Get your API key from:** https://api.bfl.ai
+**Important:** Use `api.bfl.ai` (the actual API) not `api.bfl.ml` (the documentation site)!
 
-### 4. Install Dependencies
-```bash
-# Navigate to ComfyUI root
-cd ../../
-
-# Install required packages
-pip install requests pillow numpy torch configparser
-```
-
-### 5. Restart ComfyUI
-Completely restart ComfyUI to load the new node.
-
-## Usage
+## 🎯 Usage
 
 ### Basic Workflow
-1. Load an image in ComfyUI
-2. Add the **"🎨 Flux Kontext Creator"** node
-3. Connect your image to the `input_image` input
-4. Write your edit instruction in `edit_instruction`
-5. Run the workflow
 
-### Example Instructions
+1. **Load Image**: Use "Load Image" node to import your source image
+2. **Add Flux Kontext Creator**: Add the "🎨 Flux Kontext Creator" node to your workflow
+3. **Connect**: Connect your image to the `input_image` input
+4. **Configure**: Set your editing instruction and parameters
+5. **Execute**: Run the workflow and get your edited image
 
-#### Color Changes
-```
-Change the car color to bright red
-Make the person's shirt blue
-Turn the sky into sunset colors
-```
+### Example Prompts
 
-#### Adding Elements
 ```
-Add sunglasses to the person
-Place a cat on the table
-Add a modern sofa in the room
-```
+✅ Good prompts:
+"Change the car color to red"
+"Add sunglasses to the person"
+"Make the background a beach scene"
+"Replace 'Hello' with 'Welcome'"
+"Turn the cat into a dog"
 
-#### Text Editing
-```
-Change the text on the sign to "WELCOME"
-Replace "STORE" with "CAFE" on the building
-Update the license plate to "HELLO"
-```
-
-#### Background Changes
-```
-Move the person to a beach setting while keeping the same pose
-Change the background to a modern office
-Transform the location to a forest scene
+❌ Avoid:
+Empty instructions
+Very long complex descriptions
+Conflicting instructions
 ```
 
 ### Node Parameters
 
-| Parameter | Description | Options |
+| Parameter | Description | Default |
 |-----------|-------------|---------|
-| `input_image` | Source image to edit | ComfyUI IMAGE |
-| `edit_instruction` | Text describing the edit | Free text |
-| `model` | Kontext model to use | pro, max |
-| `aspect_ratio` | Output aspect ratio | 1:1, 16:9, etc. |
-| `output_format` | Image format | png, jpeg |
-| `safety_tolerance` | Content safety level | 0-6 |
-| `seed` | Random seed | -1 (random) or number |
-| `keep_original_on_fail` | Return original if edit fails | true/false |
+| `input_image` | Source image to edit | Required |
+| `edit_instruction` | Text description of desired changes | "Change the car color to red" |
+| `model` | Choose pro or max model | flux-kontext-pro |
+| `aspect_ratio` | Output image ratio | 1:1 |
+| `output_format` | Image format (png/jpeg) | png |
+| `safety_tolerance` | Content filtering level (0-6) | 4 |
+| `seed` | Random seed (-1 for random) | -1 |
+| `keep_original_on_fail` | Return original if editing fails | True |
 
-### Model Comparison
+### Safety Tolerance Guide
 
-| Model | Speed | Quality | Best For |
-|-------|-------|---------|----------|
-| **flux-kontext-pro** | ⚡⚡⚡ | 🌟🌟🌟🌟 | General editing |
-| **flux-kontext-max** | ⚡⚡ | 🌟🌟🌟🌟🌟 | Typography, premium quality |
+- **0-2**: Very strict content filtering
+- **3-4**: Balanced filtering (recommended)
+- **5-6**: More permissive for creative work
 
-## Tips for Best Results
+## 📖 Advanced Usage
 
-### 🎯 Be Specific
-- ❌ "Make it look better"
-- ✅ "Change the wall color to light gray"
+### Iterative Editing
 
-### 🔒 Preserve Elements
-- ✅ "Add a hat while keeping the same facial expression"
-- ✅ "Change background to forest while maintaining the person's position"
+Chain multiple Flux Kontext Creator nodes to build complex edits:
 
-### 🔄 Multiple Edits
-- Make one edit at a time
-- Use the result as input for the next edit
-- This maintains quality and consistency
+```
+Image → Kontext1 ("Add hat") → Kontext2 ("Change background") → Final Result
+```
 
-### 👥 Character References
-- ❌ "Change her hair"
-- ✅ "Change the woman with black hair to blonde hair"
+### Text Editing
 
-## Troubleshooting
+For text within images, use quotation marks:
+```
+Replace 'Old Text' with 'New Text'
+```
 
-### ❌ "X_KEY not found"
-**Solution:** Check that `config.ini` exists and contains your API key
+### Character Consistency
 
-### ❌ "Invalid API key"
-**Solution:** Verify your API key at https://api.bfl.ai
+The model excels at maintaining character identity across edits:
+```
+"Put the same person in a different outfit"
+"Move the character to a beach setting"
+```
 
-### ❌ "Insufficient credits"
-**Solution:** Add credits to your BFL account
+## 🐛 Troubleshooting
 
-### ❌ "Node not appearing"
-**Solution:** 
-1. Check all files are in the correct directory
-2. Restart ComfyUI completely
-3. Check console for error messages
+### Common Issues
 
-### ❌ "Edit didn't work"
-**Solution:**
-- Make instruction more specific
-- Try different safety_tolerance setting
-- Use flux-kontext-max for better quality
+**Node not appearing in ComfyUI:**
+- Restart ComfyUI completely
+- Check console for error messages
+- Verify all dependencies are installed
 
-## API Costs
+**API Key errors:**
+- Verify your API key in `config.ini`
+- Ensure you have sufficient credits
+- Check that BASE_URL is `https://api.bfl.ai`
 
-- **flux-kontext-pro**: ~$0.04 per image
-- **flux-kontext-max**: ~$0.06 per image
+**Image generation fails:**
+- Check your prompt isn't empty
+- Verify internet connection
+- Try lowering safety_tolerance if content is blocked
+- Check BFL service status
 
-*Prices may vary, check BFL pricing for current rates*
+**Connection errors:**
+- Verify API endpoint is correct
+- Check firewall/network settings
+- Try again after a few minutes
 
-## Support
+### Error Messages
 
-- **BFL Documentation**: https://docs.bfl.ai
-- **API Dashboard**: https://api.bfl.ai
-- **Model Info**: https://bfl.ai/announcements/flux-1-kontext
+| Error | Solution |
+|-------|----------|
+| "X_KEY not found" | Add API key to config.ini |
+| "Invalid API key" | Check your API key is correct |
+| "Insufficient credits" | Add credits to your BFL account |
+| "Request timeout" | Check internet connection, try again |
+| "Content Moderated" | Adjust prompt or lower safety_tolerance |
 
-## License
+## 🔄 Updates
 
-This node is for use with Black Forest Labs' Flux Kontext API. Please comply with BFL's terms of service and usage policies.
+To update the node:
+
+```bash
+cd ComfyUI/custom_nodes/FluxKontextCreator
+git pull origin main
+```
+
+Or use ComfyUI Manager's update feature.
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- [Black Forest Labs](https://blackforestlabs.ai/) for the amazing Flux Kontext API
+- [ComfyUI](https://github.com/comfyanonymous/ComfyUI) community for the excellent framework
+- All contributors and users of this project
+
+## 📞 Support
+
+- **Issues**: [GitHub Issues](https://github.com/ShmuelRonen/FluxKontextCreator/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/ShmuelRonen/FluxKontextCreator/discussions)
+- **BFL API Support**: [BFL Documentation](https://docs.bfl.ai)
+
+## ⭐ Show Your Support
+
+If this project helps you, please consider giving it a star on GitHub!
 
 ---
 
-**Happy editing with Flux Kontext Creator!** 🎨✨
+**Made with ❤️ for the ComfyUI community**
