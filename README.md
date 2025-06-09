@@ -6,6 +6,9 @@ A powerful ComfyUI custom node for text-based image editing using Black Forest L
 ![Python](https://img.shields.io/badge/Python-3.7%2B-blue)
 ![License](https://img.shields.io/badge/License-MIT-yellow)
 
+![image](https://github.com/user-attachments/assets/d8c819a5-322e-4782-8e74-0899f7e1b862)
+
+
 ## ✨ Features
 
 - **🖼️ Text-Based Image Editing**: Modify images using simple text instructions
@@ -76,30 +79,75 @@ pip install -r requirements.txt
 3. Get your API key from the dashboard
 4. You'll receive 200 free credits to start
 
-### 2. Configure the Node
+### 2. Create config.ini File
 
-Create or edit the `config.ini` file in the node directory:
+**Step-by-step instructions:**
 
+1. **Navigate to the node directory:**
+   ```
+   ComfyUI/custom_nodes/FluxKontextCreator/
+   ```
+
+2. **Create a new file called `config.ini`** (use any text editor)
+
+3. **Copy and paste this template:**
+   ```ini
+   [API]
+   # Your Black Forest Labs API key
+   X_KEY=your-actual-api-key-here
+   
+   # API endpoint (use api.bfl.ai, not api.bfl.ml)
+   BASE_URL=https://api.bfl.ai
+   
+   [SETTINGS]
+   # Default timeout for API requests (seconds)
+   TIMEOUT=60
+   
+   # Default safety tolerance (0-6)
+   SAFETY_TOLERANCE=4
+   
+   # Default output format (png/jpeg)
+   OUTPUT_FORMAT=png
+   ```
+
+4. **Replace `your-actual-api-key-here`** with your real API key
+
+5. **Save the file** as `config.ini`
+
+### 📁 File Structure Example
+
+After installation, your directory should look like this:
+```
+ComfyUI/
+└── custom_nodes/
+    └── FluxKontextCreator/
+        ├── __init__.py
+        ├── flux_kontext_creator.py
+        ├── config.ini          ← YOU CREATE THIS
+        └── README.md
+```
+
+### 🔑 Real config.ini Example
+
+If your API key is `bfl_12345abcdef`, your config.ini should look like:
 ```ini
 [API]
-# Your Black Forest Labs API key
-X_KEY=your-api-key-here
-
-# API endpoint (use api.bfl.ai, not api.bfl.ml)
+X_KEY=bfl_12345abcdef
 BASE_URL=https://api.bfl.ai
 
 [SETTINGS]
-# Default timeout for API requests (seconds)
 TIMEOUT=60
-
-# Default safety tolerance (0-6)
 SAFETY_TOLERANCE=4
-
-# Default output format (png/jpeg)
 OUTPUT_FORMAT=png
 ```
 
-**Important:** Use `api.bfl.ai` (the actual API) not `api.bfl.ml` (the documentation site)!
+### ⚠️ Important Notes
+
+- **Use `api.bfl.ai`** (the actual API) not `api.bfl.ml` (the documentation site)
+- **No quotes** around the API key
+- **No spaces** around the `=` sign
+- The file **must be named exactly** `config.ini`
+- **Keep your API key private** - don't share it publicly
 
 ## 🎯 Usage
 
