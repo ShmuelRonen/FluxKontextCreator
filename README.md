@@ -1,16 +1,21 @@
 # 🎨 Flux Kontext Creator for ComfyUI
 
-A powerful ComfyUI custom node for text-based image editing using Black Forest Labs' Flux Kontext API. Transform your images with simple text instructions while maintaining character consistency and quality.
+A powerful ComfyUI custom node collection for text-based image editing and **revolutionary multi image fusion** using Black Forest Labs' Flux Kontext API. Transform and fuse your images with simple text instructions while maintaining character consistency and quality.
 
 ![Flux Kontext Creator](https://img.shields.io/badge/ComfyUI-Custom%20Node-brightgreen)
 ![Python](https://img.shields.io/badge/Python-3.7%2B-blue)
 ![License](https://img.shields.io/badge/License-MIT-yellow)
+![Fusion](https://img.shields.io/badge/🔥-Image%20Fusion-red)
 
+### Multi image fusion process:
+![image](https://github.com/user-attachments/assets/3e5aecee-c9ae-47ef-beee-28e79d6fcbcc)
+
+### single image regular process:
 ![image](https://github.com/user-attachments/assets/d8c819a5-322e-4782-8e74-0899f7e1b862)
-
 
 ## ✨ Features
 
+### 🎨 **Standard Flux Kontext Creator**
 - **🖼️ Text-Based Image Editing**: Modify images using simple text instructions
 - **🎭 Character Consistency**: Maintain character identity across multiple edits
 - **⚡ Fast Processing**: 3-5 second generation times
@@ -18,6 +23,14 @@ A powerful ComfyUI custom node for text-based image editing using Black Forest L
 - **🎨 Style Transfer**: Apply different artistic styles while preserving elements
 - **📝 Text Editing**: Modify text within images directly
 - **🔄 Iterative Editing**: Build upon previous edits step-by-step
+
+### 🔥 **NEW: Experimental Fusion Creator**
+- **👥 Character Fusion**: Merge multiple people into one unified character
+- **🌟 Multi-Image Combination**: Combine up to 10 images with intelligent layouts
+- **🎯 Force Fusion Mode**: Advanced prompting system for seamless blending
+- **📐 Layout Modes**: Side-by-side, overlay, grid, and seamless blend options
+- **🧠 Smart Preprocessing**: Automatic image flattening and resizing
+- **⚡ Breakthrough Fusion**: Single-input fusion mode for impossible combinations
 
 ## 🚀 Supported Models
 
@@ -123,7 +136,8 @@ ComfyUI/
     └── FluxKontextCreator/
         ├── __init__.py
         ├── flux_kontext_creator.py
-        ├── config.ini          ← YOU CREATE THIS
+        ├── flux_kontext_creator_exp.py    ← NEW FUSION NODE
+        ├── config.ini                     ← YOU CREATE THIS
         └── README.md
 ```
 
@@ -151,7 +165,9 @@ OUTPUT_FORMAT=png
 
 ## 🎯 Usage
 
-### Basic Workflow
+### 🎨 Standard Flux Kontext Creator
+
+#### Basic Workflow
 
 1. **Load Image**: Use "Load Image" node to import your source image
 2. **Add Flux Kontext Creator**: Add the "🎨 Flux Kontext Creator" node to your workflow
@@ -159,7 +175,192 @@ OUTPUT_FORMAT=png
 4. **Configure**: Set your editing instruction and parameters
 5. **Execute**: Run the workflow and get your edited image
 
-### Example Prompts
+#### Standard Node Parameters
+
+| Parameter | Description | Default |
+|-----------|-------------|---------|
+| `input_image` | Source image to edit | Required |
+| `edit_instruction` | Text description of desired changes | "Change the car color to red" |
+| `model` | Choose pro or max model | flux-kontext-pro |
+| `aspect_ratio` | Output image ratio | 1:1 |
+| `output_format` | Image format (png/jpeg) | png |
+| `safety_tolerance` | Content filtering level (0-6) | 4 |
+| `seed` | Random seed (-1 for random) | -1 |
+| `keep_original_on_fail` | Return original if editing fails | True |
+
+### 🔥 Experimental Fusion Creator
+
+#### Revolutionary Fusion Workflow
+
+1. **Load Multiple Images**: Use multiple "Load Image" nodes for your source images
+2. **Add Experimental Creator**: Add the "🔥 Flux Kontext Creator Experimental" node
+3. **Connect Images**: Connect images to `image_1`, `image_2`, etc.
+4. **Set Fusion Parameters**: Configure combination mode and fusion settings
+5. **Write Fusion Prompt**: Use fusion-specific language (see guide below)
+6. **Execute**: Get impossible fusions that look completely natural
+
+#### Experimental Node Parameters
+
+| Parameter | Description | Default | Options |
+|-----------|-------------|---------|---------|
+| `prompt` | Fusion instruction text | "Merge these two people..." | Multiline text |
+| `number_of_images` | How many images to process | 2 | 1-10 |
+| `combination_mode` | How to layout images | side_by_side | side_by_side, overlay, grid_2x2, all_in_one, no_combine |
+| `force_fusion` | Enable advanced fusion mode | True | True/False |
+| `flatten_images` | Handle RGBA→RGB conversion | True | True/False |
+| `resize_mode` | Image resizing strategy | fit_largest | fit_largest, fit_smallest, no_resize |
+| `gap_pixels` | Space between combined images | 10 | 0-100 |
+| `model` | Kontext model to use | flux-kontext-pro | pro/max |
+| `aspect_ratio` | Output image ratio | 1:1 | Various ratios |
+| `seed` | Random seed | -1 | -1 to 2147483647 |
+
+## 🧠 Fusion Mastery Guide
+
+### 🎯 **FUNDAMENTAL PRINCIPLE**
+**Your prompt determines HOW the AI interprets and fuses your images.** The combination_mode creates the reference layout, but your **prompt language** controls the fusion strategy.
+
+### 🔥 **COMBINATION MODE STRATEGIES**
+
+#### **side_by_side (BEST FOR CHARACTER FUSION)**
+**When to use:** Merging people, faces, or distinct subjects
+**Prompt approach:** Direct fusion language
+```
+✅ "merge the two people into one person"
+✅ "combine their best features into a single character"
+✅ "the woman and child as one unified person"
+```
+
+#### **overlay (BEST FOR STYLE/ATMOSPHERE)**
+**When to use:** Style transfer, mood blending, artistic effects
+**Prompt approach:** Atmospheric and stylistic language
+```
+✅ "apply the vintage mood to the modern portrait"
+✅ "blend the lighting and atmosphere from both images"
+✅ "combine the artistic style with the main subject"
+```
+
+#### **grid_2x2 (BEST FOR MULTI-ELEMENT SCENES)**
+**When to use:** Complex scenes with multiple objects/elements
+**Prompt approach:** Spatial and compositional language
+```
+✅ "arrange all elements in a cohesive interior scene"
+✅ "create a unified composition from all four elements"
+✅ "blend the room elements with the people naturally"
+```
+
+#### **all_in_one (BATCH PROCESSING)**
+**When to use:** Processing multiple variations simultaneously
+**Prompt approach:** Consistent transformation language
+```
+✅ "apply the same artistic style to all subjects"
+✅ "transform each person with the same lighting effect"
+✅ "create consistent character variations"
+```
+
+### 📝 **PROMPT FRAMEWORKS**
+
+#### **LEVEL 1: BASIC FUSION PROMPTS**
+```
+Subject Fusion: "[Person A] combined with [Person B] as [desired outcome]"
+Object Integration: "merge [object] with [object] into [result]"
+Style Transfer: "[subject] in the style of [reference style]"
+```
+
+**Examples:**
+- ✅ "the blonde woman holding the small dog in a restaurant"
+- ✅ "combine the child's innocence with the woman's elegance"
+- ✅ "merge the two hairstyles into one unique look"
+
+#### **LEVEL 2: ADVANCED FUSION PROMPTS**
+```
+Characteristic Fusion: "blend [specific features] from both subjects"
+Environmental Integration: "[subject] naturally placed in [environment] with [lighting/mood]"
+Temporal Fusion: "[age/time reference] version of [combined subjects]"
+```
+
+**Examples:**
+- ✅ "blend the woman's facial features with the child's eye color and smile"
+- ✅ "the combined person sitting naturally in the restaurant with warm lighting"
+- ✅ "teenage version combining both their facial structures"
+
+#### **LEVEL 3: EXPERT FUSION PROMPTS**
+```
+Multi-Attribute Control: "[feature 1] + [feature 2] + [environment] + [mood] + [style]"
+Narrative Fusion: "[story context] showing [relationship] between [fused elements]"
+Technical Specifications: "[specific technical requirements] for [fusion result]"
+```
+
+**Examples:**
+- ✅ "blonde curly hair + bright eyes + cozy restaurant + happy expression + professional portrait style"
+- ✅ "mother-daughter bond visualized as one person showing both generations"
+- ✅ "photorealistic fusion maintaining facial symmetry and natural lighting"
+
+### 🚫 **COMMON MISTAKES & FIXES**
+
+#### **❌ MISTAKE: Scene Description Instead of Fusion**
+```
+Wrong: "two people sitting in a restaurant"
+✅ Right: "the combined person sitting in the restaurant"
+```
+
+#### **❌ MISTAKE: Vague Fusion Instructions**
+```
+Wrong: "mix them together"
+✅ Right: "blend the woman's features with the child's smile and eye color"
+```
+
+#### **❌ MISTAKE: Conflicting Requirements**
+```
+Wrong: "keep both people separate but combine them"
+✅ Right: "merge both people into one unified character"
+```
+
+#### **❌ MISTAKE: Over-Complex Prompts**
+```
+Wrong: "create a fusion of the woman and child while maintaining their individual characteristics but also blending them into one person with specific features..."
+✅ Right: "blend the woman and child into one person with combined features"
+```
+
+## 📖 Example Workflows
+
+### Standard Text Editing
+
+```
+Input: Photo of person wearing blue shirt
+Prompt: "Change the shirt color to red"
+Result: Same person now wearing red shirt
+```
+
+### Character Fusion (Experimental)
+
+```
+Input 1: Photo of blonde woman
+Input 2: Photo of child with dog
+Mode: side_by_side + force_fusion=True
+Prompt: "the blonde woman holding the dog in a restaurant"
+Result: Single person (fusion of both) holding dog in restaurant setting
+```
+
+### Style Transfer (Experimental)
+
+```
+Input 1: Modern portrait
+Input 2: Vintage photo
+Mode: overlay + force_fusion=False
+Prompt: "apply the vintage aesthetic to the modern portrait"
+Result: Modern person with vintage styling and atmosphere
+```
+
+### Multi-Element Scene (Experimental)
+
+```
+Input: 4 different room elements
+Mode: grid_2x2 + force_fusion=True
+Prompt: "create a cohesive living room with all these elements"
+Result: Unified interior design combining all elements
+```
+
+### Standard Example Prompts
 
 ```
 ✅ Good prompts:
@@ -175,26 +376,32 @@ Very long complex descriptions
 Conflicting instructions
 ```
 
-### Node Parameters
-
-| Parameter | Description | Default |
-|-----------|-------------|---------|
-| `input_image` | Source image to edit | Required |
-| `edit_instruction` | Text description of desired changes | "Change the car color to red" |
-| `model` | Choose pro or max model | flux-kontext-pro |
-| `aspect_ratio` | Output image ratio | 1:1 |
-| `output_format` | Image format (png/jpeg) | png |
-| `safety_tolerance` | Content filtering level (0-6) | 4 |
-| `seed` | Random seed (-1 for random) | -1 |
-| `keep_original_on_fail` | Return original if editing fails | True |
-
 ### Safety Tolerance Guide
 
 - **0-2**: Very strict content filtering
 - **3-4**: Balanced filtering (recommended)
 - **5-6**: More permissive for creative work
 
-## 📖 Advanced Usage
+## 🔬 Advanced Techniques
+
+### **🔄 force_fusion Parameter**
+
+#### **force_fusion = True (RECOMMENDED FOR FUSION)**
+- **Use for:** All character/object fusion tasks
+- **Effect:** Activates advanced fusion prompting system
+- **Prompt style:** Direct fusion language
+- **Result:** True blending and merging of elements
+
+#### **force_fusion = False**
+- **Use for:** Scene enhancement, style application
+- **Effect:** Standard Kontext processing
+- **Prompt style:** Traditional editing language
+- **Result:** Scene modification and enhancement
+
+### **📏 Optimal Image Counts**
+- **2 images:** Perfect for character fusion
+- **3-4 images:** Good for complex scenes
+- **5+ images:** Use with grid or all_in_one modes
 
 ### Iterative Editing
 
@@ -219,6 +426,25 @@ The model excels at maintaining character identity across edits:
 "Move the character to a beach setting"
 ```
 
+## 🛠 **PARAMETER OPTIMIZATION GUIDE**
+
+### **🎨 Model Selection**
+- **flux-kontext-pro:** Balanced speed and quality, ideal for most fusion tasks
+- **flux-kontext-max:** Maximum quality and prompt adherence for critical fusions
+
+### **📐 Combination Mode Selection**
+```
+Character Fusion: side_by_side + force_fusion=True + direct prompts
+Style Transfer: overlay + force_fusion=False + atmospheric prompts
+Complex Scenes: grid_2x2 + force_fusion=True + spatial prompts
+Batch Processing: all_in_one + force_fusion=False + consistent prompts
+```
+
+### **🎯 Resize Mode Selection**
+- **fit_largest:** Best for maintaining detail in high-res images
+- **fit_smallest:** Good for consistent sizing across all images
+- **no_resize:** Use when all images are already properly sized
+
 ## 🐛 Troubleshooting
 
 ### Common Issues
@@ -239,6 +465,12 @@ The model excels at maintaining character identity across edits:
 - Try lowering safety_tolerance if content is blocked
 - Check BFL service status
 
+**Fusion not working properly:**
+- Ensure `force_fusion=True` for character merging
+- Use fusion-specific prompt language (see guide above)
+- Try `side_by_side` mode for best character fusion results
+- Check that you're using singular language ("the person" not "two people")
+
 **Connection errors:**
 - Verify API endpoint is correct
 - Check firewall/network settings
@@ -253,6 +485,22 @@ The model excels at maintaining character identity across edits:
 | "Insufficient credits" | Add credits to your BFL account |
 | "Request timeout" | Check internet connection, try again |
 | "Content Moderated" | Adjust prompt or lower safety_tolerance |
+| "Failed to combine images" | Check image formats and try different resize_mode |
+| "No valid images provided" | Ensure images are properly connected to inputs |
+
+## 🎉 **SUCCESS EXAMPLES**
+
+### **Real User Success:**
+**Input:** Dog photo + Woman with child photo
+**Settings:** `side_by_side` + `force_fusion=True`
+**Prompt:** *"the blond girl alone hold the dog in restaurant"*
+**Result:** ✅ Perfect fusion - single person holding dog in restaurant
+
+**Why it worked:**
+1. **Singular language** ("the blond girl") implies fusion
+2. **Clear action** ("hold the dog") provides specific interaction
+3. **Environmental context** ("in restaurant") sets the scene
+4. **Simple structure** without over-complication
 
 ## 🔄 Updates
 
@@ -283,7 +531,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - [Black Forest Labs](https://blackforestlabs.ai/) for the amazing Flux Kontext API
 - [ComfyUI](https://github.com/comfyanonymous/ComfyUI) community for the excellent framework
-- All contributors and users of this project
+- All contributors and users who helped develop the fusion techniques
+- Special thanks to the community for breakthrough fusion discoveries
 
 ## 📞 Support
 
@@ -291,10 +540,23 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Discussions**: [GitHub Discussions](https://github.com/ShmuelRonen/FluxKontextCreator/discussions)
 - **BFL API Support**: [BFL Documentation](https://docs.bfl.ai)
 
+## 🏆 **MASTERY CHECKLIST**
+
+- [ ] Understand combination_mode effects on reference layout
+- [ ] Know when to use force_fusion=True vs False
+- [ ] Can write fusion vs enhancement prompts
+- [ ] Use specific targeting for precise control
+- [ ] Apply iterative refinement workflow
+- [ ] Test parameter combinations systematically
+- [ ] Build personal prompt template library
+- [ ] Achieve consistent, high-quality fusion results
+
 ## ⭐ Show Your Support
 
-If this project helps you, please consider giving it a star on GitHub!
+If this project helps you create impossible fusions and amazing edits, please consider giving it a star on GitHub!
 
 ---
 
-**Made with ❤️ for the ComfyUI community**
+**Made with ❤️ and 🔥 for the ComfyUI community**
+
+**🚀 Ready to create the impossible? Start with simple character fusion and work your way up to master-level techniques!**
