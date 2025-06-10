@@ -10,7 +10,7 @@ A powerful ComfyUI custom node collection for text-based image editing and **rev
 ### Multi image fusion process:
 ![image](https://github.com/user-attachments/assets/3e5aecee-c9ae-47ef-beee-28e79d6fcbcc)
 
-### single image regular process:
+### Single image regular process:
 ![image](https://github.com/user-attachments/assets/d8c819a5-322e-4782-8e74-0899f7e1b862)
 
 ## ✨ Features
