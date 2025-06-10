@@ -1,0 +1,340 @@
+{
+  "id": "c6e410bc-5e2c-460b-ae81-c91b6094fbb1",
+  "revision": 0,
+  "last_node_id": 296,
+  "last_link_id": 531,
+  "nodes": [
+    {
+      "id": 294,
+      "type": "easy showAnything",
+      "pos": [
+        1775.4703369140625,
+        74.30084228515625
+      ],
+      "size": [
+        210,
+        418.46746826171875
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "anything",
+          "shape": 7,
+          "type": "*",
+          "link": 528
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output",
+          "type": "*",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-easy-use",
+        "ver": "e4ac947d9612ef5d12fb055c0b51b9de8b981deb",
+        "Node name for S&R": "easy showAnything",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "✅ Flux Kontext fusion complete: side_by_side mode"
+      ]
+    },
+    {
+      "id": 287,
+      "type": "LoadImage",
+      "pos": [
+        951.6539306640625,
+        185.23928833007812
+      ],
+      "size": [
+        270,
+        314
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            531
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.40",
+        "Node name for S&R": "LoadImage",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "ComfyUI_temp_seipy_00010_.png",
+        "image"
+      ]
+    },
+    {
+      "id": 285,
+      "type": "PreviewImage",
+      "pos": [
+        2035.843505859375,
+        -109.77297973632812
+      ],
+      "size": [
+        512.1529541015625,
+        471.27996826171875
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 529
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.40",
+        "Node name for S&R": "PreviewImage",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 296,
+      "type": "FluxKontextCreatorExperimental",
+      "pos": [
+        1308.2779541015625,
+        -109.53421020507812
+      ],
+      "size": [
+        400,
+        556
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image_1",
+          "type": "IMAGE",
+          "link": 530
+        },
+        {
+          "name": "image_2",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 531
+        },
+        {
+          "name": "image_3",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "image_4",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "image_5",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "image_6",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "image_7",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "image_8",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "image_9",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "image_10",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": [
+            529
+          ]
+        },
+        {
+          "name": "combined_prompt",
+          "type": "STRING",
+          "links": [
+            528
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "FluxKontextCreatorExperimental",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "the blond girl with the t-shirt alone hold the dog in restaurant",
+        2,
+        "side_by_side",
+        true,
+        true,
+        "fit_largest",
+        0,
+        "flux-kontext-pro",
+        "16:9",
+        "png",
+        4,
+        2009248328,
+        "randomize"
+      ]
+    },
+    {
+      "id": 286,
+      "type": "LoadImage",
+      "pos": [
+        945.8182373046875,
+        -192.85781860351562
+      ],
+      "size": [
+        270,
+        314
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            530
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.40",
+        "Node name for S&R": "LoadImage",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "1.webp",
+        "image"
+      ]
+    }
+  ],
+  "links": [
+    [
+      528,
+      296,
+      1,
+      294,
+      0,
+      "*"
+    ],
+    [
+      529,
+      296,
+      0,
+      285,
+      0,
+      "IMAGE"
+    ],
+    [
+      530,
+      286,
+      0,
+      296,
+      0,
+      "IMAGE"
+    ],
+    [
+      531,
+      287,
+      0,
+      296,
+      1,
+      "IMAGE"
+    ]
+  ],
+  "groups": [
+    {
+      "id": 7,
+      "title": "🔥 Flux Kontext Creator Experimental",
+      "bounding": [
+        863.010498046875,
+        -307.42852783203125,
+        1832.1873779296875,
+        838.3663330078125
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    }
+  ],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.7247295000000005,
+      "offset": [
+        -159.22019906569216,
+        686.7450011014722
+      ]
+    },
+    "frontendVersion": "1.21.7",
+    "node_versions": {
+      "ComfyUI-WanVideoWrapper": "5a2383621a05825d0d0437781afcb8552d9590fd",
+      "comfy-core": "0.3.26",
+      "ComfyUI-VideoHelperSuite": "0a75c7958fe320efcb052f1d9f8451fd20c730a8"
+    },
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true,
+    "ue_links": [],
+    "links_added_by_ue": []
+  },
+  "version": 0.4
+}
